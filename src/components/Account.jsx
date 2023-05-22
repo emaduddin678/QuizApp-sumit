@@ -3,8 +3,8 @@ import classes from "../styles/Account.module.css";
 
 function Account() {
   return (
-    <div class={classes.account}>
-      <span class="material-icons-outlined" title="Account">
+    <div className={classes.account}>
+      <span className="material-icons-outlined" title="Account">
         account_circle
       </span>
       <a href="signup.html">Signup</a>
