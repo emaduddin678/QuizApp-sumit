@@ -15,15 +15,27 @@ function SignUp() {
         <Illustration />
 
         <Form className={`${classes.signup}`}>
-          <TextInput type="text" placeholder="Enter name" icon="person" />
+          <TextInput
+            type="text"
+            name="name"
+            placeholder="Enter name"
+            icon="person"
+          />
           <TextInput
             type="email"
+            name="email"
             placeholder="Enter email"
             icon="alternate_email"
           />
-          <TextInput type="password" placeholder="Enter password" icon="lock" />
           <TextInput
             type="password"
+            name="password"
+            placeholder="Enter password"
+            icon="lock"
+          />
+          <TextInput
+            type="password"
+            name="comfirm_password"
             placeholder="Confirm password"
             icon="lock_clock"
           />
