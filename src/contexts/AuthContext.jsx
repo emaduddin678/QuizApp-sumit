@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import "../firebase";
+import "../firebase.jsx";
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -17,10 +17,16 @@ export function useAuth() {
 
 // const user = useAuth();
 
-export function AuthProvider({ clildren }) {
+export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
   const [currentUser, setCurrentUser] = useState();
-
+  const [registerFormData, setRegisterFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    comfirm_password:""
+  })
+  
   useEffect(() => {
     const auth = getAuth();
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -62,6 +68,8 @@ export function AuthProvider({ clildren }) {
 
   const value = {
     currentUser,
+    registerFormData,
+    setRegisterFormData,
     signup,
     login,
     logout,
@@ -69,7 +77,7 @@ export function AuthProvider({ clildren }) {
 
   return (
     <AuthContext.Provider value={value}>
-      {!loading && clildren}
+      {!loading && children}
     </AuthContext.Provider>
   );
 }
