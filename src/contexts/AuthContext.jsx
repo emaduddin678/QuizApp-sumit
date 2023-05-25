@@ -20,13 +20,7 @@ export function useAuth() {
 export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
   const [currentUser, setCurrentUser] = useState();
-  const [registerFormData, setRegisterFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
-    comfirm_password:""
-  })
-  
+
   useEffect(() => {
     const auth = getAuth();
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -42,7 +36,7 @@ export function AuthProvider({ children }) {
     const auth = getAuth();
     await createUserWithEmailAndPassword(auth, email, password);
 
-    console.log(auth);
+    // console.log(auth);
     await updateProfile(auth.currentUser, {
       displayName: username,
     });
@@ -68,8 +62,6 @@ export function AuthProvider({ children }) {
 
   const value = {
     currentUser,
-    registerFormData,
-    setRegisterFormData,
     signup,
     login,
     logout,
