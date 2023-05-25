@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import "../firebase.jsx";
+import classes from "../styles/AuthContext.module.css";
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -66,6 +67,10 @@ export function AuthProvider({ children }) {
     login,
     logout,
   };
+
+  if (loading) {
+    return <h1 className={classes.textCenter}>Loading...</h1>;
+  }
 
   return (
     <AuthContext.Provider value={value}>
