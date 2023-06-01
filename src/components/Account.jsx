@@ -12,7 +12,7 @@ function Account() {
           <span className="material-icons-outlined" title="Account">
             account_circle
           </span>
-          {console.log("Logged in ", currentUser.displayName)}
+          {/* {console.log("Logged in ", currentUser.displayName)} */}
           <span>{currentUser.displayName}</span>
           <span
             className="material-icons-outlined"

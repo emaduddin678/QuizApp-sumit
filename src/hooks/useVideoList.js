@@ -9,7 +9,7 @@ import {
   startAt,
 } from "firebase/database";
 
-function useVideoList(page) {
+function useVideoList(page) { 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [videos, setVideos] = useState([]);
@@ -33,8 +33,8 @@ function useVideoList(page) {
           setVideos((prevVideos) => {
             return [...prevVideos, ...Object.values(snapshot.val())];
           });
-        }else{
-          setHasMore(false)
+        } else {
+          setHasMore(false);
         }
       } catch (err) {
         console.log(err);
@@ -42,14 +42,16 @@ function useVideoList(page) {
         setError(true);
       }
     }
-    fetchVideos();
+    setTimeout(() => {
+      fetchVideos();
+    }, 500);
   }, [page]);
   // {console.log("videos", videos)}
   return {
     loading,
     error,
     videos,
-    hasMore
+    hasMore,
   };
 }
 

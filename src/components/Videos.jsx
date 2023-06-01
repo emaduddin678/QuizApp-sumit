@@ -14,14 +14,23 @@ function Videos() {
         <InfiniteScroll
           dataLength={videos.length}
           hasMore={hasMore}
+          loader="Loading..."
           next={() => setPage(page + 8)}
         >
-          {videos.map((video) => (
-            <Link to="/quiz" key={video.youtubeID }>
-              {console.log(video.youtubeID)}
+          {videos.map((video) =>
+            video.noq > 0 ? (
+              <Link to={`/quiz/${video.youtubeID}`} key={video.youtubeID}>
+                {/* {console.log(video.youtubeID)} */}
+                <Video
+                  title={video.title}
+                  id={video.youtubeID}
+                  noq={video.noq}
+                />
+              </Link>
+            ) : (
               <Video title={video.title} id={video.youtubeID} noq={video.noq} />
-            </Link>
-          ))}
+            )
+          )}
         </InfiniteScroll>
       )}
       {!loading && videos.length === 0 && <div>No data found!</div>}
