@@ -11,15 +11,19 @@ function useQuestions(videoId) {
       const db = getDatabase();
       const quizRef = ref(db, "quiz/" + videoId + "/questions");
       const quizQuery = query(quizRef, orderByKey());
-      console.log(quizQuery)
+      // console.log(quizQuery)
       try {
         setError(false);
         setLoading(true);
         const snapshot = await get(quizQuery);
+        // console.log(snapshot)
         setLoading(false);
+        // console.log(typeof (snapshot.val()))
+        // console.log(typeof snapshot.val().map((a) => console.log(a)));
         if (snapshot.exists()) {
           setQuestions((prevQuestions) => {
             return [...prevQuestions, ...Object.values(snapshot.val())];
+            // return [...prevQuestions, ...(snapshot.val())];
           });
         }
       } catch (err) {

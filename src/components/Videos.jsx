@@ -28,7 +28,7 @@ function Videos() {
                 />
               </Link>
             ) : (
-              <Video title={video.title} id={video.youtubeID} noq={video.noq} />
+              <Video title={video.title} key={video.youtubeID} id={video.youtubeID} noq={video.noq} />
             )
           )}
         </InfiniteScroll>

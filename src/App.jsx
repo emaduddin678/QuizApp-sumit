@@ -26,7 +26,7 @@ function App() {
             <Route path="/login" element={<PublicRoute component={LogIn} />} />
             <Route path="/quiz/:id" element={<PrivateRoute component={Quiz} />} />
             <Route
-              path="/result"
+              path="/result/:id"
               element={<PrivateRoute component={Result} />}
             />
           </Routes>
