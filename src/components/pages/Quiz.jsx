@@ -13,6 +13,8 @@ const initialState = null;
 const reducer = (state, action) => {
   switch (action.type) {
     case "questions":
+      // console.log(_.cloneDeep(state));
+      // console.log(action.value);
       action.value.forEach((question) => {
         question.options.forEach((option) => {
           option.checked = false;
@@ -37,7 +39,7 @@ function Quiz() {
   const [qna, dispatch] = useReducer(reducer, initialState);
   const { currentUser } = useAuth();
   const navigate = useNavigate();
-
+  // console.log(questions);
   useEffect(() => {
     dispatch({
       type: "questions",
@@ -77,14 +79,15 @@ function Quiz() {
     await set(resultRef, {
       [id]: qna,
     });
+    console.log(qna)
 
-    navigate({
-      pathname: `/result/${id}`,
-      state: {
-        qna,
-      },
-    });
-    //  navigate(`/result/${id}`, { state: { qna } });
+    // navigate({
+    //   pathname: `/result/${id}`,
+    //   state: {
+    //     qna,
+    //   },
+    // });
+     navigate(`/result/${id}`, { state: { qna } });
   }
 
   //calculate percentage of progress
@@ -100,6 +103,7 @@ function Quiz() {
           <h1>{qna[currentQuestion].title}</h1>
           <h4>Question can have multiple answers</h4>
           <Answers
+          input={true}
             options={qna[currentQuestion].options}
             handleChange={handleAnswerChange}
           />

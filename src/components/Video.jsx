@@ -1,5 +1,5 @@
 import React from "react";
-import image from "../assets/images/3.jpg";
+// import image from "../assets/images/3.jpg";
 import classes from "../styles/Video.module.css";
 
 function Video({title, id, noq}) {

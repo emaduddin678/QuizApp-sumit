@@ -42,9 +42,9 @@ function useVideoList(page) {
         setError(true);
       }
     }
-    setTimeout(() => {
-      fetchVideos();
-    }, 500);
+    fetchVideos();
+    // setTimeout(() => {
+    // }, 500);
   }, [page]);
   // {console.log("videos", videos)}
   return {
