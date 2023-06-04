@@ -9,7 +9,7 @@ function Videos() {
   const { loading, error, videos, hasMore } = useVideoList(page);
 
   return (
-    <div style={{height: "100vh"}}>
+    <div style={{ height: "100vh" }}>
       {videos.length > 0 && (
         <InfiniteScroll
           dataLength={videos.length}
@@ -20,7 +20,13 @@ function Videos() {
           {/* {console.log(videos[0].title)} */}
           {videos.map((video, i) =>
             video.noq > 0 ? (
-              <Link to={`/quiz/${video.youtubeID}`} key={i}>
+              <Link
+                to={`/quiz/${video.youtubeID}`}
+                state={{
+                  videoTitle: video.title,
+                }}
+                key={i}
+              >
                 <Video
                   title={video.title}
                   id={video.youtubeID}
@@ -40,7 +46,17 @@ function Videos() {
       )}
       {!loading && videos.length === 0 && <div>No data found!</div>}
       {error && <div>There was an error!</div>}
-      {loading && <h1 style={{display: "flex", justifyContent: "center", alignItems: "center"}}>Loading...</h1>}
+      {loading && (
+        <h1
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          Loading...
+        </h1>
+      )}
     </div>
   );
 }

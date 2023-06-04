@@ -9,7 +9,7 @@ function Result() {
   const { id } = useParams();
   const location = useLocation();
   const { qna } = location.state || {};
-  console.log(location);
+  // console.log(location);
 
   const { loading, error, answers } = useAnswers(id);
   // console.log(answers)

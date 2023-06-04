@@ -2,7 +2,7 @@ import React, { useEffect, useReducer, useState } from "react";
 import Answers from "../Answers";
 import ProgressBar from "../ProgressBar";
 import MiniPlayer from "../MiniPlayer";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import useQuestions from "../../hooks/useQuestions";
 import _ from "lodash";
 import { useAuth } from "../../contexts/AuthContext";
@@ -39,6 +39,9 @@ function Quiz() {
   const [qna, dispatch] = useReducer(reducer, initialState);
   const { currentUser } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+  // console.log(location);
+
   // console.log(questions);
   useEffect(() => {
     dispatch({
@@ -79,7 +82,7 @@ function Quiz() {
     await set(resultRef, {
       [id]: qna,
     });
-    console.log(qna)
+    // console.log(qna);
 
     // navigate({
     //   pathname: `/result/${id}`,
@@ -87,7 +90,7 @@ function Quiz() {
     //     qna,
     //   },
     // });
-     navigate(`/result/${id}`, { state: { qna } });
+    navigate(`/result/${id}`, { state: { qna } });
   }
 
   //calculate percentage of progress
@@ -103,7 +106,7 @@ function Quiz() {
           <h1>{qna[currentQuestion].title}</h1>
           <h4>Question can have multiple answers</h4>
           <Answers
-          input={true}
+            input={true}
             options={qna[currentQuestion].options}
             handleChange={handleAnswerChange}
           />
@@ -113,7 +116,7 @@ function Quiz() {
             progress={percentage}
             submit={submit}
           />
-          <MiniPlayer />
+          <MiniPlayer id={id} title={location.state.videoTitle} />
         </>
       )}
     </>
